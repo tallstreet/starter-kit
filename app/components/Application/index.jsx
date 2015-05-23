@@ -15,7 +15,7 @@ export default class Application extends React.Component {
 
         <main className="ApplicationComponent-body">
           <p>Seems like creating your own React starter kit is a right of passage. So, here's mine.</p>
-          <p>For more information, see the <a href="https://github.com/tallstreet/starterkit#tallstret-starterkit">README</a>.</p>
+          <p>For more information, see the <a href="https://github.com/tallstreet/starter-kit#tallstret-starterkit">README</a>.</p>
         </main>
       </div>
     </div>;
