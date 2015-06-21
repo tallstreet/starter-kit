@@ -5,7 +5,7 @@ import Header from "../Header";
   Component specific stylesheet
   Can also use .less, .scss, or plain .css files here
 */
-require("./style.sass");
+require("./style.scss");
 
 export default class Application extends React.Component {
   render() {
