@@ -1,11 +1,11 @@
-import React from 'react';
-import Header from '../Header';
+import React from "react";
+import Header from "../Header";
 
 /*
   Component specific stylesheet
   Can also use .less, .scss, or plain .css files here
 */
-require('./style.sass');
+require("./style.sass");
 
 export default class Application extends React.Component {
   render() {
@@ -14,7 +14,7 @@ export default class Application extends React.Component {
         <Header />
 
         <main className="ApplicationComponent-body">
-          <p>Seems like creating your own React starter kit is a right of passage. So, here's mine.</p>
+          <p>Seems like creating your own React starter kit is a right of passage. So, here"s mine.</p>
           <p>For more information, see the <a href="https://github.com/tallstreet/starter-kit#tallstret-starterkit">README</a>.</p>
         </main>
       </div>
