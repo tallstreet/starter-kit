@@ -21,7 +21,7 @@ module.exports = function(options) {
     scssLoaders = extractForProduction(scssLoaders);
   }
 
-  var jsLoaders = ['babel'];
+  var jsLoaders = ['babel?stage=0'];
 
   return {
     entry: './app/index.jsx',
