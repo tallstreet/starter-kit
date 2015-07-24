@@ -22,7 +22,7 @@ universalRouter(location, history, redux)
       const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react');
       console.info('You will see a "Warning: React attempted to reuse markup in a container but the checksum was' +
         ' invalid." message. That\'s because the redux-devtools are enabled.');
-      React.render(<div>
+      React.render(<div className="outer">
         {component}
         <DebugPanel top right bottom key="debugPanel">
           <DevTools store={redux} monitor={LogMonitor}/>

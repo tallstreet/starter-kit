@@ -54,7 +54,7 @@ app.use((req, res) => {
                                                       media="screen, projection" rel="stylesheet" type="text/css"/>)}
             </head>
             <body>
-            <div id="content" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>
+            <div id="content" class="outer" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>
             <script dangerouslySetInnerHTML={{__html: `window.__data=${JSON.stringify(store.getState())};`}}/>
             <script src={webpackStats.vendor}/>
             <script src={webpackStats.app[0]}/>
