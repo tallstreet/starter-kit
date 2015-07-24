@@ -1,15 +1,15 @@
 import React from "react/addons";
-import Application from "../index.jsx";
+import Form from "../index.jsx";
 
-describe("Application", function() {
+describe("Form", function() {
   it("displays the component", function() {
     const TestUtils = React.addons.TestUtils;
 
     const application = TestUtils.renderIntoDocument(
-      <Application leaderboardStore={{}} />
+      <Form />
     );
 
-    const divs = TestUtils.scryRenderedDOMComponentsWithClass(application, "ApplicationComponent");
+    const divs = TestUtils.scryRenderedDOMComponentsWithClass(application, "Form");
 
     expect(divs.length).to.equal(1);
   });

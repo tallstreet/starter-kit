@@ -12,6 +12,6 @@ describe("Header", function() {
     const title = TestUtils.findRenderedDOMComponentWithClass(header, "HeaderComponent-title");
     const dom = React.findDOMNode(title);
 
-    expect(dom.textContent).to.equal("Tallstreet Starter Kit");
+    expect(dom.textContent).to.equal("Football Scores");
   });
 });

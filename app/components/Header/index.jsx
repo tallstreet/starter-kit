@@ -6,31 +6,34 @@ const styles = {
     display: 'flex',
     paddingBottom: '1em',
     borderBottom: '1px solid #eee',
-    marginBottom: '1em',
+    marginBottom: '1em'
   },
 
   headerComponentLogo: {
-    marginRight: '20px',
+    marginRight: '20px'
   },
 
   headerComponentWrap: {
     display: 'flex',
     flexFlow: 'column',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   headerComponentTitle: {
     marginBottom: '0.5em',
     fontWeight: 'bold',
-    fontSize: '2em',
-  },
+    fontSize: '2em'
+  }
 };
 
-/*
-  Reference an image and get back a URL automatically via webpack.
-  webpack takes care of versioning, bundling for production, etc.
-*/
-const logoURL = require('./images/react-logo.svg');
+let logoURL = '';
+if (__CLIENT__) {
+  /*
+    Reference an image and get back a URL automatically via webpack.
+    webpack takes care of versioning, bundling for production, etc.
+  */
+  logoURL = require('./images/react-logo.svg');
+}
 
 @Radium
 export default class Header extends React.Component {

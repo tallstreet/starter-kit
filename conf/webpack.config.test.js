@@ -1,6 +1,6 @@
 module.exports = require('./make-webpack-config')({
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: {
-    app: ['./app/client.js'],
+    app: './app/client.js',
   },
 });
