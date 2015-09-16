@@ -1,15 +1,17 @@
-/*global __DEVELOPMENT__*/
+/*global __DEV__*/
 import Express from 'express';
 import React from 'react';
-import Location from 'react-router/lib/Location';
 import config from './config';
-import favicon from 'serve-favicon';
 import compression from 'compression';
 import httpProxy from 'http-proxy';
 import path from 'path';
 import createStore from './redux/create';
 import ApiClient from './ServerApiClient';
-import universalRouter from './universalRouter';
+import routes from './routes';
+import createLocation from 'history/lib/createLocation';
+import { renderToString } from 'react-dom/server'
+import { RoutingContext, match } from 'react-router';
+
 const app = new Express();
 const proxy = httpProxy.createProxyServer({
   target: 'http://localhost:' + config.apiPort
@@ -20,7 +22,7 @@ app.use(compression());
 
 let webpackStats;
 
-if (!__DEVELOPMENT__) {
+if (!__DEV__) {
   webpackStats = require('../manifest.json');
 }
 
@@ -32,7 +34,7 @@ app.use('/api', (req, res) => {
 });
 
 app.use((req, res) => {
-  if (__DEVELOPMENT__) {
+  if (__DEV__) {
     webpackStats = require('../manifest.json');
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
@@ -40,34 +42,38 @@ app.use((req, res) => {
   }
   const client = new ApiClient(req);
   const store = createStore(client);
-  const location = new Location(req.path, req.query);
-  universalRouter(location, undefined, store)
-    .then((component) => {
+  const location = createLocation(req.path);
+  match({ routes, location }, (error, redirectLocation, renderProps) => {
+    if (redirectLocation) {
+      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+    } else if (error) {
+      res.status(500).send(error.message);
+    } else if (renderProps === null) {
+      res.status(404).send('Not found');
+    } else {
       try {
-        res.send('<!doctype html>\n' + React.renderToString(
-            <html lang="en-us">
-            <head>
-              <meta charSet="utf-8"/>
-              <title>React Redux Universal Hot Example</title>
-              <link rel="shortcut icon" href="/favicon.ico"/>
-                  {webpackStats.app.filter((file) => file.endsWith('css')).map((css, i) => <link href={css} ref={i}
-                                                      media="screen, projection" rel="stylesheet" type="text/css"/>)}
-            </head>
-            <body>
-            <div id="content" class="outer" dangerouslySetInnerHTML={{__html: React.renderToString(component)}}/>
-            <script dangerouslySetInnerHTML={{__html: `window.__data=${JSON.stringify(store.getState())};`}}/>
-            <script src={webpackStats.vendor}/>
-            <script src={webpackStats.app[0]}/>
-            </body>
-            </html>));
-      } catch (error) {
-        console.error('ERROR', error);
-        res.status(500).send({error: error});
+        res.send('<!doctype html>\n' + renderToString(
+          <html lang="en-us">
+          <head>
+          <meta charSet="utf-8"/>
+          <title>React Redux Universal Hot Example</title>
+          <link rel="shortcut icon" href="/favicon.ico"/>
+           {webpackStats.app.filter((file) => file.endsWith('css')).map((css, i) => <link href={css} ref={i} key={i}
+                                               media="screen, projection" rel="stylesheet" type="text/css"/>)}
+          </head>
+          <body>
+          <div id="content" className="outer" dangerouslySetInnerHTML={{__html: renderToString(<RoutingContext {...renderProps}/>)}}/>
+          <script dangerouslySetInnerHTML={{__html: `window.__data=${JSON.stringify(store.getState())};`}}/>
+          <script src={webpackStats.vendor}/>
+          <script src={webpackStats.app[0]}/>
+          </body>
+          </html>));
+      } catch (err) {
+        console.error('ERROR', err);
+        res.status(500).send({error: err});
       }
-    }, (error) => {
-      console.error('ERROR', error);
-      res.status(500).send({error: error});
-    });
+    }
+  });
 });
 
 if (config.port) {
