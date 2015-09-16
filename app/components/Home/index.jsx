@@ -20,17 +20,12 @@ class Home extends React.Component {
   post: state.backend.post,
   loading: state.backend.loading
 }))
-export default class FormContainer {
+export default class HomeContainer extends React.Component {
   static propTypes = {
     error: PropTypes.string,
     loading: PropTypes.bool,
     dispatch: PropTypes.func.isRequired
   }
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired
-  }
-
 
   render() {
     const { error, loading, dispatch } = this.props;

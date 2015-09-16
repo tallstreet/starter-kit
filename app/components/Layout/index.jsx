@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Header from '../Header';
 
-import {createTransitionHook} from '../../universalRouter';
 
 
 let bgURL = '';
@@ -33,16 +32,6 @@ const styles = {
 };
 
 export default class Application extends React.Component {
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-  }
-
-  componentWillMount() {
-    const {router, store} = this.context;
-    router.addTransitionHook(createTransitionHook(store));
-  }
-
   render() {
     return (
       <div style={styles.applicationComponent}>
