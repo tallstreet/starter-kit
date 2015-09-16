@@ -1,6 +1,6 @@
 import {Provider} from 'react-redux';
 import React from 'react';
-import configureStore from '../store/configureStore';
+import configureStore from '../redux/create';
 import Router from '../routes';
 import {renderDevTools} from '../utils/devTools';
 
