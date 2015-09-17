@@ -9,7 +9,7 @@ import createStore from './redux/create';
 import ApiClient from './ServerApiClient';
 import routes from './routes';
 import createLocation from 'history/lib/createLocation';
-import { renderToString } from 'react-dom/server'
+import { renderToString } from 'react-dom/server';
 import { RoutingContext, match } from 'react-router';
 
 const app = new Express();

@@ -79,42 +79,50 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/},
-      
+      {
+        test: /tests.*_test\.js$/,
+        loader: 'mocha-loader!babel-loader'
+      },
+      {
+        test: /node_modules\/(jsdom|node-fetch)/,
+        loader: 'null-loader'
+      },
+
       // Needed for the css-loader when [bootstrap-webpack](https://github.com/bline/bootstrap-webpack)
       // loads bootstrap's css.
       {
         test: /\.css$/,
-        loader: cssLoaders,
+        loader: cssLoaders
       },
       {
         test: /\.scss$/,
-        loader: scssLoaders,
+        loader: scssLoaders
       },
       {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json'
       },
       {
         test: /\.png$/,
-        loader: 'url?limit=100000&mimetype=image/png',
+        loader: 'url?limit=100000&mimetype=image/png'
       },
       {
         test: /\.svg$/,
-        loader: 'url?limit=100000&mimetype=image/svg+xml',
+        loader: 'url?limit=100000&mimetype=image/svg+xml'
       },
       {
         test: /\.gif$/,
-        loader: 'url?limit=100000&mimetype=image/gif',
+        loader: 'url?limit=100000&mimetype=image/gif'
       },
       {
         test: /\.jpg$/,
-        loader: 'file',
+        loader: 'file'
       },
-      { test: /\.woff\?.*$/,   loader: 'url?limit=10000&mimetype=application/font-woff' },
-      { test: /\.woff2\?.*$/,   loader: 'url?limit=10000&mimetype=application/font-woff2' },
-      { test: /\.ttf\?.*$/,    loader: 'url?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.eot/,    loader: 'file' },
-      { test: /\.svg\??.*$/,    loader: 'url?limit=10000&mimetype=image/svg+xml' }
+      { test: /\.woff\?.*$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.woff2\?.*$/, loader: 'url?limit=10000&mimetype=application/font-woff2' },
+      { test: /\.ttf\?.*$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.eot/, loader: 'file' },
+      { test: /\.svg\??.*$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
     ]
   },
   resolve: {
