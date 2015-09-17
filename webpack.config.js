@@ -78,7 +78,11 @@ module.exports = {
   ],
   module: {
     loaders: [
-      {test: /\.jsx?$/, loaders: ['babel'], exclude: /node_modules/},
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        exclude: /node_modules/
+      },
       {
         test: /tests.*_test\.js$/,
         loader: 'mocha-loader!babel-loader'
@@ -118,11 +122,10 @@ module.exports = {
         test: /\.jpg$/,
         loader: 'file'
       },
-      { test: /\.woff\?.*$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
+      { test: /\.woff\2\?.*$/, loader: 'url?limit=10000&mimetype=application/font-woff' },
       { test: /\.woff2\?.*$/, loader: 'url?limit=10000&mimetype=application/font-woff2' },
       { test: /\.ttf\?.*$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.eot/, loader: 'file' },
-      { test: /\.svg\??.*$/, loader: 'url?limit=10000&mimetype=image/svg+xml' }
+      { test: /\.eot/, loader: 'file' }
     ]
   },
   resolve: {
