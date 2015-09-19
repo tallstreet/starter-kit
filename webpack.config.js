@@ -38,11 +38,9 @@ module.exports = {
       'rx',
       'react',
       'react/addons',
-      'lodash',
       'classnames',
       'keymirror',
-      'whatwg-fetch',
-      'es6-promise'
+      'whatwg-fetch'
     ]
   },
   output: {
