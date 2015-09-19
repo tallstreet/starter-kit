@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from '../Header';
 
-
-
 let bgURL = '';
 if (__CLIENT__) {
   bgURL = require('./images/bg.jpg');
@@ -31,16 +29,14 @@ const styles = {
   }
 };
 
-export default class Application extends React.Component {
-  render() {
-    return (
-      <div style={styles.applicationComponent}>
-        <div style={styles.applicationComponentWrap}>
-          <Header />
+export default (props) => {
+  return (
+    <div style={styles.applicationComponent}>
+      <div style={styles.applicationComponentWrap}>
+        <Header />
 
-          {this.props.children}
-        </div>
+        {props.children}
       </div>
-    );
-  }
+    </div>
+  );
 }

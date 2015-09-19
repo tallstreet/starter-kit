@@ -1,5 +1,4 @@
 import React from 'react';
-import Radium from 'radium';
 
 const styles = {
   headerComponent: {
@@ -35,18 +34,15 @@ if (__CLIENT__) {
   logoURL = require('./images/react-logo.svg');
 }
 
-@Radium
-export default class Header extends React.Component {
-  render() {
-    return (
-      <header style={styles.headerComponent}>
-        <img style={styles.headerComponentLogo} src={logoURL} height="125" />
+export default (props) => {
+  return (
+    <header style={styles.headerComponent}>
+      <img style={styles.headerComponentLogo} src={logoURL} height="125" />
 
-        <div style={styles.headerComponentWrap}>
-          <h1 style={styles.headerComponentTitle}>Tallstreet Starter Kit</h1>
-          <h2 style={styles.headerComponentTagLine}>The simple things tied together</h2>
-        </div>
-      </header>
-    );
-  }
+      <div style={styles.headerComponentWrap}>
+        <h1 style={styles.headerComponentTitle}>Tallstreet Starter Kit</h1>
+        <h2 style={styles.headerComponentTagLine}>The simple things tied together</h2>
+      </div>
+    </header>
+  );
 }
