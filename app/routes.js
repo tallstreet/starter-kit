@@ -15,5 +15,6 @@ const NotFoundRoute = {
 export default {
   path: '/',
   component: Layout,
-  childRoutes: [ HomeRoute, NotFoundRoute ]
+  indexRoute: HomeRoute,
+  childRoutes: [ NotFoundRoute ]
 };
